@@ -11,6 +11,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
+# Initialize django-environ
+env = environ.Env()
+environ.Env.read_env()  # Reads the .env file
+
+# Use environment variables in your settings
+SECRET_KEY = env('SECRET_KEY')  # Fetches the secret key from the .env file
+DEBUG = env.bool('DEBUG', default=False)  # Fetches DEBUG status as a boolean
+
+DATABASES = {
+    'default': env.db(),  # This assumes DATABASE_URL is set in the .env file
+}
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add Whitenoise middleware
 ]
 
 ROOT_URLCONF = 'my_project.urls'
@@ -75,6 +90,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
+ALLOWED_HOSTS = ['GeorgeAcademy.onrender.com', 'localhost']
 
 
 # Database
