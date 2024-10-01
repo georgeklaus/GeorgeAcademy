@@ -3,3 +3,4 @@ gunicorn==23.0.0
 packaging==24.1
 whitenoise==6.7.0
 Django==5.1.1
+psycopg2-binary==2.9.5
