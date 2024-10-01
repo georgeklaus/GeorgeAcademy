@@ -30,7 +30,7 @@ DATABASES = {
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-ALLOWED_HOSTS = ['my_project.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['georgeacademy-1.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -89,7 +89,7 @@ STATICFILES_DIRS = [
 ]
 
 # For collecting static files, use an absolute path (no need to combine with BASE_DIR)
-STATIC_ROOT = "/home/george/pxelcode.com/my_project/staticfiles"
+STATIC_ROOT = "/home/george/pxelcode.com/my_project/"
 
 # Login settings
 LOGIN_REDIRECT_URL = 'home'  # Redirect to home (index-7.html) after login
