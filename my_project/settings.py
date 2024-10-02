@@ -18,7 +18,7 @@ print("SECRET_KEY:", env('SECRET_KEY'))
 
 # Use environment variables in your settings
 SECRET_KEY = env('SECRET_KEY')  # Fetches the secret key from the .env file
-DEBUG = env.bool('DEBUG', default=False)  # Fetches DEBUG status as a boolean
+DEBUG = env.bool('DEBUG', default=True)  # Fetches DEBUG status as a boolean
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
