@@ -1,8 +1,8 @@
 /*==================
 Author       : Dreambuzz
-Template Name: Edutim- Education LMS template
-Author URI : https://themeturn.com/
-Description: edutim,coaching, distant learning, education html, health coaching, kids education, language school, learning online html, live training, online courses, online training, remote training, school html theme, training, university html, virtual training 
+Template Name: George- Education LMS
+Author URI : https://georgeklaus.vercel.app/
+Description: george,coaching, distant learning, education html, health coaching, kids education, language school, learning online html, live training, online courses, online training, remote training, school html theme, training, university html, virtual training 
 Version      : 1.0
 ================================*/
 /*------------------------------------------------------------------
@@ -40,7 +40,7 @@ body {
   line-height: 30px;
   margin: 0;
   text-align: left;
-  background-color: #fff;
+  background-color: #ffffff;
   font-weight: 400;
   color: #535967;
   overflow-x: hidden;
@@ -72,7 +72,7 @@ h6 {
   font-weight: 700;
   line-height: 1.3;
   margin-bottom: 0px;
-  color: #07294D;
+  color: #0a3869;
 }
 
 .h1,
@@ -162,7 +162,7 @@ BUTTONS STYLE
 
 .btn-main {
   background: #FF1949;
-  color: #fff;
+  color: #f7f5f5;
   border-color: #FF1949;
 }
 
@@ -248,7 +248,7 @@ Banner Area
 
 .page-header {
   padding: 120px 0px;
-  background: #F4FDFF;
+  background: #cdeef5;
   position: relative;
   background: url("../images/bg/page-header.jpg") no-repeat;
   background-size: cover;
@@ -470,7 +470,7 @@ Header TopBar
 .dropdown-item:hover {
   color: #fff;
   text-decoration: none;
-  background-color: #FF1949;
+  background-color: #f10d3b;
 }
 
 .dropdown-toggle::after {
@@ -1614,7 +1614,7 @@ Testimonial
 }
 
 .testimonials-slides .owl-item.active.center .review-item .client-info {
-  background: #222;
+  background: #242020;
   border: 1px solid #222;
   border-top: 3px solid #FF1949;
 }
