@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 
 from pathlib import Path
 import environ
+import os
 
 # Initialize django-environ
 env = environ.Env()
@@ -19,6 +20,8 @@ print("SECRET_KEY:", env('SECRET_KEY'))
 # Use environment variables in your settings
 SECRET_KEY = env('SECRET_KEY')  # Fetches the secret key from the .env file
 DEBUG = env.bool('DEBUG', default=False)  # Fetches DEBUG status as a boolean
+
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,12 +87,13 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Points to your static directory
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# For collecting static files, use an absolute path (no need to combine with BASE_DIR)
-STATIC_ROOT = "/home/george/pxelcode.com/my_project/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Login settings
 LOGIN_REDIRECT_URL = 'home'  # Redirect to home (index-7.html) after login
@@ -97,3 +101,11 @@ LOGIN_URL = 'login'  # Redirect to login page if not logged in
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'georgerubinga@gmail.com'
+EMAIL_HOST_PASSWORD = 'gjqtieuqpirjlmro'

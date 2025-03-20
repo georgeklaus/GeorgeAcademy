@@ -3,6 +3,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Home page view (index-7.html) which requires the user to be logged in
 @login_required
@@ -70,6 +76,36 @@ def login_registration_view(request):
 
 # Contact page view
 def contact_view(request):
+    if request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        # Construct the full message
+        full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            # Send the email
+            send_mail(
+                subject,
+                full_message,
+                settings.EMAIL_HOST_USER,  # Use the email from settings
+                ['georgerubinga@gmail.com'],  # Replace with the actual recipient email
+                fail_silently=False,
+            )
+            # Return success response
+            messages.success(request, 'Your message has been sent successfully!')
+        except Exception as e:
+            # Log the error and return error response
+            logger.error(f"Error sending email: {e}")
+            messages.error(request, f"An error occurred: {str(e)}")
+
+        # Redirect back to the contact page
+        return redirect('contact')
+
+    # If it's a GET request, render the contact page
     return render(request, 'contact.html')
 
 # Blog single view
