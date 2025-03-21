@@ -22,6 +22,8 @@ ALLOWED_HOSTS = [
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
+
 # Database configuration
 DATABASES = {
     'default': {
