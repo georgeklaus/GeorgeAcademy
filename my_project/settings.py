@@ -13,7 +13,11 @@ import os
 # Use environment variables in your settings # Fetches the secret key from the .env file
 DEBUG = False # Fetches DEBUG status as a boolean
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '.vercel.app',  # Allows all Vercel subdomains
+    '127.0.0.1',  # For local development
+    'localhost',  # For local development
+]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
