@@ -19,7 +19,12 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database configuration
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Application definition
 INSTALLED_APPS = [
