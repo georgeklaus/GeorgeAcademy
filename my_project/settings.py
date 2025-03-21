@@ -21,10 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Database configuration
 DATABASES = {}
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-ALLOWED_HOSTS = ['georgeacademy-1.onrender.com', 'localhost', '127.0.0.1']
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
