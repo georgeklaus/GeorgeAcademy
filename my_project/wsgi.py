@@ -8,12 +8,6 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
 import os
-import environ
-
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()  # Load the environment variables from your .env file
-
 # Set the default settings module for the 'wsgi' command
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
