@@ -83,24 +83,50 @@ def contact_view(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        # Construct the full message
+        # Validate form data
+        if not name or not email or not subject or not message:
+            messages.error(request, 'All fields are required.')
+            return redirect('contact')
+
+        # Construct the full message for the owner
         full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
 
         try:
-            # Send the email
+            # Send email to the owner
             send_mail(
                 subject,
                 full_message,
-                settings.EMAIL_HOST_USER,  # Use the email from settings
-                ['georgerubinga@gmail.com'],  # Replace with the actual recipient email
+                settings.EMAIL_HOST_USER,  # Your email address
+                ['georgerubinga@gmail.com'],  # Replace with your email
                 fail_silently=False,
             )
+
+            # Send confirmation email to the sender
+            confirmation_subject = "Thank you for contacting GeorgeAcademy"
+            confirmation_message = (
+                f"Dear {name},\n\n"
+                "Thank you for reaching out to us at GeorgeAcademy. "
+                "We have received your message and will get back to you shortly.\n\n"
+                "Here is a copy of your message:\n"
+                f"Subject: {subject}\n"
+                f"Message: {message}\n\n"
+                "Best regards,\n"
+                "GeorgeAcademy Team"
+            )
+            send_mail(
+                confirmation_subject,
+                confirmation_message,
+                settings.EMAIL_HOST_USER,  # Your email address
+                [email],  # Sender's email address
+                fail_silently=False,
+            )
+
             # Return success response
-            messages.success(request, 'Your message has been sent successfully!')
+            messages.success(request, 'Your message has been sent successfully! A confirmation email has been sent to your address.')
         except Exception as e:
             # Log the error and return error response
             logger.error(f"Error sending email: {e}")
-            messages.error(request, f"An error occurred: {str(e)}")
+            messages.error(request, 'An error occurred while sending your message. Please try again later.')
 
         # Redirect back to the contact page
         return redirect('contact')
