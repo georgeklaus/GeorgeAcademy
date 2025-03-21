@@ -8,18 +8,10 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 """
 
 from pathlib import Path
-import environ
 import os
 
-# Initialize django-environ
-env = environ.Env()
-environ.Env.read_env()  # Reads the .env file
-
-print("SECRET_KEY:", env('SECRET_KEY'))
-
-# Use environment variables in your settings
-SECRET_KEY = env('SECRET_KEY')  # Fetches the secret key from the .env file
-DEBUG = env.bool('DEBUG', default=False)  # Fetches DEBUG status as a boolean
+# Use environment variables in your settings # Fetches the secret key from the .env file
+DEBUG = False # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
@@ -27,9 +19,7 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database configuration
-DATABASES = {
-    'default': env.db(),  # This assumes DATABASE_URL is set in the .env file
-}
+DATABASES = {}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
