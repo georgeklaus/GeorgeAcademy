@@ -27,8 +27,12 @@ SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_
 # Database configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'george',  # Your database name
+        'USER': 'george',  # Your PostgreSQL username
+        'PASSWORD': 'george7769',  # Replace with the password for the 'george' user
+        'HOST': 'localhost',  # Use 'localhost' for local development
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 
