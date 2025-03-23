@@ -6,6 +6,7 @@ python-dotenv==1.0.0  # Ensure this line is present
 
 # Database and ORM
 sqlparse==0.5.3
+psycopg2-binary
 
 # HTTP and networking
 requests==2.25.1
