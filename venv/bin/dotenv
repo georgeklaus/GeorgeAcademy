@@ -1,4 +1,4 @@
-#!/home/george/pxelcode.com/my_project/venv/bin/python3
+#!/home/george/georgeacademy/my_project/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
