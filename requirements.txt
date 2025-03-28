@@ -32,3 +32,6 @@ soupsieve==2.3.1
 typing_extensions==4.12.2
 pytz==2022.1
 zipp==1.0.0
+
+setuptools>=42
+wheel
