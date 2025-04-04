@@ -11,7 +11,7 @@ from pathlib import Path
 import os
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
-DEBUG = True # Fetches DEBUG status as a boolean
+DEBUG = False # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
