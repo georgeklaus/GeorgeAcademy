@@ -1,23 +1,14 @@
-# Django and related packages
 Django==5.1.6
 django-cors-headers==4.7.0
 whitenoise==6.9.0
-python-dotenv==1.0.0  # Ensure this line is present
-
-# Database and ORM
+python-dotenv==1.0.0
 sqlparse==0.5.3
 psycopg2-binary==2.9.6
-
-# HTTP and networking
 requests==2.25.1
 urllib3==1.26.5
-
-# Security
 cryptography==3.4.8
 pycryptodomex==3.11.0
 PyNaCl==1.5.0
-
-# Other utilities
 beautifulsoup4==4.10.0
 filelock==3.6.0
 Pillow==9.0.1
@@ -32,6 +23,5 @@ soupsieve==2.3.1
 typing_extensions==4.12.2
 pytz==2022.1
 zipp==1.0.0
-
-setuptools>=42
-wheel
+setuptools>=65.5.1
+wheel>=0.40.0
