@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from products import views  # Import the view
+from products import views  # Import the views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login_registration_view, name='login'),  # Set login-registration as the homepage
-    path('home/', views.home_view, name='home'),  # Main page (index-7.html)
+    path('', views.home_view, name='home'),  # Set the home page (index-7.html) as the default page
+    path('login/', views.login_registration_view, name='login'),  # Login/registration page
     path('about/', views.about_view, name='about'),  # About page
-    path('course-grid/', views.course_grid_view, name='course_grid_view'),  # Course grid page
-    path('products/', views.product_list_view, name='product_list_view'),  # Products page
+    path('course-grid/', views.course_grid_view, name='course_grid'),  # Course grid page
+    path('products/', views.product_list_view, name='product_list'),  # Products page
     path('checkout/', views.checkout_view, name='checkout'),  # Checkout page
     path('cart/', views.cart_view, name='cart'),  # Cart page
     path('contact/', views.contact_view, name='contact'),  # Contact page

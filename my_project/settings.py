@@ -11,7 +11,7 @@ from pathlib import Path
 import os
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
-DEBUG = False # Fetches DEBUG status as a boolean
+DEBUG = True # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
@@ -98,7 +98,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Login settings
 LOGIN_REDIRECT_URL = 'home'  # Redirect to home (index-7.html) after login
-LOGIN_URL = 'login'  # Redirect to login page if not logged in
+LOGIN_URL = '/login/'  # Redirect to login page if not logged in
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

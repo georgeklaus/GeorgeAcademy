@@ -46,13 +46,3 @@ def contact_view(request):
 # Blog single view
 def blog_single_view(request):
     return render(request, 'blog-single.html')
-
-# URL patterns
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.home_view, name='home'),
-    path('course-grid/', views.course_grid_view, name='course_grid_view'),
-    path('products/', views.product_list_view, name='product_list_view'),
-]
