@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
 DEBUG = False # Fetches DEBUG status as a boolean
@@ -26,14 +27,7 @@ SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_
 
 # Database configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'george',  # Your database name
-        'USER': 'george',  # Your PostgreSQL username
-        'PASSWORD': 'george7769',  # Replace with the password for the 'george' user
-        'HOST': 'localhost',  # Use 'localhost' for local development
-        'PORT': '5432',  # Default PostgreSQL port
-    }
+    'default': dj_database_url.config(default='postgres://george:george7769@localhost:5432/george')
 }
 
 # Application definition
