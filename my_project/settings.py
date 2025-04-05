@@ -97,8 +97,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Login settings
-LOGIN_REDIRECT_URL = 'home'  # Redirect to home (index-7.html) after login
-LOGIN_URL = '/login/'  # Redirect to login page if not logged in
+LOGIN_REDIRECT_URL = '/home/'  # Redirect to the homepage after login
+LOGIN_URL = '/'  # Redirect to the login page if not logged in
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

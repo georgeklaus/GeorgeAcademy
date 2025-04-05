@@ -20,8 +20,8 @@ from products import views  # Import the views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_view, name='home'),  # Set the home page (index-7.html) as the default page
-    path('login/', views.login_registration_view, name='login'),  # Login/registration page
+    path('', views.login_registration, name='login'),  # Login page as the default page
+    path('home/', views.home_view, name='home'),  # Home page (index-7.html)
     path('about/', views.about_view, name='about'),  # About page
     path('course-grid/', views.course_grid_view, name='course_grid'),  # Course grid page
     path('products/', views.product_list_view, name='product_list'),  # Products page

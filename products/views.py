@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
 import logging
 
 logger = logging.getLogger(__name__)
@@ -36,8 +37,18 @@ def cart_view(request):
     return render(request, 'cart.html')
 
 # Login and Registration page view
-def login_registration_view(request):
-    return render(request, 'login-registration.html')
+def login_registration(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)  # Log the user in
+            return redirect('home')  # Redirect to the homepage after login
+        else:
+            messages.error(request, 'Invalid username or password')
+    else:
+        form = AuthenticationForm()  # Display an empty login form for GET requests
+    return render(request, 'login-registration.html', {'form': form})
 
 # Contact page view
 def contact_view(request):
