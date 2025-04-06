@@ -17,22 +17,27 @@ def home_view(request):
     return render(request, 'index-7.html')
 
 # About page view
+@login_required
 def about_view(request):
     return render(request, 'about.html')
 
 # Course grid page view
+@login_required
 def course_grid_view(request):
     return render(request, 'course-grid.html')
 
 # Product list page view
+@login_required
 def product_list_view(request):
     return render(request, 'product-list.html')
 
 # Checkout page view
+@login_required
 def checkout_view(request):
     return render(request, 'checkout.html')
 
 # Cart page view
+@login_required
 def cart_view(request):
     return render(request, 'cart.html')
 
@@ -51,9 +56,11 @@ def login_registration(request):
     return render(request, 'login-registration.html', {'form': form})
 
 # Contact page view
+@login_required
 def contact_view(request):
     return render(request, 'contact.html')
 
 # Blog single view
+@login_required
 def blog_single_view(request):
     return render(request, 'blog-single.html')
