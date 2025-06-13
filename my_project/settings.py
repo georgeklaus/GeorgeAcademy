@@ -1,14 +1,8 @@
 from pathlib import Path
 import os
-import dj_database_url
-
-# 👇 ADD THIS BLOCK to alias psycopg3 as psycopg2 for Django compatibility
-import sys
-import psycopg
-sys.modules["psycopg2"] = psycopg
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
-DEBUG = False  # Fetches DEBUG status as a boolean
+DEBUG = True  # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
@@ -21,11 +15,39 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
 
-# Database configuration
+# Database configuration/
+#DATABASES = {'default': dj_database_url.config(default='postgres://george:george7769@localhost:5432/george')
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://george:george7769@localhost:5432/george')
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# Add this to your settings.py
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
 
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -83,8 +105,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Login settings
-LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/home/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
