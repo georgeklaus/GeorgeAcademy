@@ -149,6 +149,45 @@ def handle_register(request):
 # Contact page view
 @login_required
 def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        if not name or not email or not subject or not message:
+            messages.error(request, "All fields are required.")
+        else:
+            # Email to site owner
+            email_subject = f"Contact from {name} <{email}>"
+            email_body = f"Subject: {subject}\n\nMessage:\n{message}"
+            send_mail(
+                subject=email_subject,
+                message=email_body,
+                from_email=None,  # Uses DEFAULT_FROM_EMAIL from settings.py
+                recipient_list=['georgerubinga@gmail.com'],  # Change to your email
+            )
+
+            # Confirmation email to sender
+            confirmation_subject = "We've received your message"
+            confirmation_body = (
+                f"Hello {name},\n\n"
+                "Thank you for contacting us. We have received your message and will get back to you soon.\n\n"
+                "Here is a copy of your message:\n"
+                f"Subject: {subject}\n"
+                f"Message: {message}\n\n"
+                "Best regards,\n"
+                "klaus & co. Team"
+            )
+            send_mail(
+                subject=confirmation_subject,
+                message=confirmation_body,
+                from_email=None,  # Uses DEFAULT_FROM_EMAIL
+                recipient_list=[email],
+            )
+
+            messages.success(request, "Your message was sent successfully. A confirmation email has been sent to you.")
+
     return render(request, 'contact.html')
 
 # Blog single view

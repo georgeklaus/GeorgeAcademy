@@ -1,8 +1,10 @@
 from pathlib import Path
 import os
 
+import dj_database_url
+
 # Use environment variables in your settings # Fetches the secret key from the .env file
-DEBUG = True  # Fetches DEBUG status as a boolean
+DEBUG = False  # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
@@ -17,12 +19,24 @@ SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_
 
 # Database configuration/
 #DATABASES = {'default': dj_database_url.config(default='postgres://george:george7769@localhost:5432/george')
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get('VERCEL'):
+    # Use Vercel Postgres connection
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('postgres://neondb_owner:npg_dCaP4KnyO6jH@ep-mute-firefly-a4beel4z-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require'),
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
-}
+else:
+    # Local development configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 # Add this to your settings.py
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -118,3 +132,15 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'georgerubinga@gmail.com'
 EMAIL_HOST_PASSWORD = 'gjqtieuqpirjlmro'
+
+ #Vercel-specific settings
+if os.environ.get('VERCEL'):
+    # Security settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    
+# Static files
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
