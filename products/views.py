@@ -194,3 +194,19 @@ def contact_view(request):
 @login_required
 def blog_single_view(request):
     return render(request, 'blog-single.html')
+
+def debug_info(request):
+    import os
+    from django.conf import settings
+    from django.http import JsonResponse
+
+    info = {
+        "BASE_DIR": str(settings.BASE_DIR),
+        "TEMPLATE_DIRS": settings.TEMPLATES[0]['DIRS'],
+        "STATIC_ROOT": str(settings.STATIC_ROOT),
+        "STATIC_ROOT exists": os.path.exists(settings.STATIC_ROOT),
+        "Template exists": os.path.exists(os.path.join(settings.BASE_DIR, 'templates/login_registration.html')),
+        "Files in templates": os.listdir(os.path.join(settings.BASE_DIR, 'templates')) if os.path.exists(os.path.join(settings.BASE_DIR, 'templates')) else "MISSING",
+        "Current directory": os.listdir(settings.BASE_DIR)
+    }
+    return JsonResponse(info)

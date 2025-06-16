@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 from pathlib import Path
 import dj_database_url
+import sys
+
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
 DEBUG = False  # Fetches DEBUG status as a boolean
@@ -84,7 +86,9 @@ ROOT_URLCONF = 'my_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,8 +105,8 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = '/var/task/staticfiles'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

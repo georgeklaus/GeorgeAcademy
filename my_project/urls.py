@@ -21,4 +21,7 @@ urlpatterns = [
     path('cart/', views.cart_view, name='cart'),
     path('contact/', views.contact_view, name='contact'),
     path('blog-single/', views.blog_single_view, name='blog_single'),
+
+    # Debug route
+    path('debug/', views.debug_info),
 ]
