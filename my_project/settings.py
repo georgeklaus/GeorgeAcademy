@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-
+from pathlib import Path
 import dj_database_url
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
@@ -13,30 +13,19 @@ ALLOWED_HOSTS = [
 ]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
 
-# Database configuration/
-#DATABASES = {'default': dj_database_url.config(default='postgres://george:george7769@localhost:5432/george')
+# Replace your Vercel database config with this:
 if os.environ.get('VERCEL'):
-    # Use Vercel Postgres connection
     DATABASES = {
         'default': dj_database_url.config(
-            default=os.environ.get('postgres://neondb_owner:npg_dCaP4KnyO6jH@ep-mute-firefly-a4beel4z-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require'),
             conn_max_age=600,
+            conn_health_checks=True,
             ssl_require=True
         )
     }
-else:
-    # Local development configuration
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
 # Add this to your settings.py
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -81,13 +70,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add Whitenoise middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add Whitenoise middleware
 ]
 
 ROOT_URLCONF = 'my_project.urls'
@@ -112,11 +101,11 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Login settings
 LOGIN_URL = '/'
