@@ -15,12 +15,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-# Use 'staticfiles' if that's your STATIC_ROOT, or 'static' if that's where your files are
-static_root = os.path.join(os.path.dirname(__file__), 'staticfiles')
-if not os.path.exists(static_root):
-    static_root = os.path.join(os.path.dirname(__file__), 'static')
-
-application = WhiteNoise(application, root=static_root)
+application = WhiteNoise(application, root=os.path.join(os.path.dirname(__file__), 'staticfiles'))
 
 # For Vercel compatibility
 app = application  # Vercel looks for 'app' or 'handler'
