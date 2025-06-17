@@ -16,14 +16,16 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-# Serve static files with WhiteNoise - PRODUCTION ONLY
+# Always use WhiteNoise in production (Vercel)
+application = WhiteNoise(
+    application,
+    root=settings.STATIC_ROOT,
+    prefix=settings.STATIC_URL,
+    autorefresh=False
+)
+
+# Optionally serve media files in production (not recommended for large files)
 if not settings.DEBUG:
-    application = WhiteNoise(
-        application,
-        root=settings.STATIC_ROOT,  # Use the path from settings
-        prefix=settings.STATIC_URL
-    )
-    # If you need to serve media files through WhiteNoise (not recommended for production)
-    # application.add_files(settings.MEDIA_ROOT, prefix=settings.MEDIA_URL)
+    application.add_files(settings.MEDIA_ROOT, prefix=settings.MEDIA_URL)
 
 app = application  # For Vercel

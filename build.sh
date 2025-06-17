@@ -6,23 +6,19 @@ pip install -r requirements.txt
 # Run database migrations
 python manage.py migrate
 
-# Create Vercel-specific static directory
-mkdir -p /var/task/staticfiles
+# Vercel-specific setup
+if [ "$VERCEL" == "1" ]; then
+    # Create directories (if needed)
+    mkdir -p /var/task/staticfiles
+    mkdir -p /var/task/media
 
-# Collect static files
-python manage.py collectstatic --noinput --verbosity 0
+    # Collect static files to Vercel location
+    python manage.py collectstatic --noinput --clear --verbosity 0
 
-# Verify files were collected
-echo "Collected static files:"
-find /var/task/staticfiles -type f | wc -l
-
-# Verify template exists
-echo "Checking for template:"
-find . -name login_registration.html
-
-
-{
-  "scripts": {
-    "vercel-build": "chmod +x build.sh && ./build.sh"
-  }
-}
+    # Verify collection
+    echo "Static files collected:"
+    find /var/task/staticfiles -type f | wc -l
+else
+    # Local development
+    python manage.py collectstatic --noinput
+fi

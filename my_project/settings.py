@@ -115,8 +115,15 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS =[BASE_DIR, 'static',]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Correct: absolute path
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')  # Correct: only your source static dir
+]
+
+# Vercel-specific override
+if os.environ.get('VERCEL'):
+    STATIC_ROOT = '/var/task/staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -143,6 +150,3 @@ if os.environ.get('VERCEL'):
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    
-# Static files
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
