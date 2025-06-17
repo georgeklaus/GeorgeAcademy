@@ -123,6 +123,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Disable WhiteNoise's directory checks in production
+WHITENOISE_AUTOREFRESH = True  # Allows missing files without warnings
+
 # Login settings
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/home/'
