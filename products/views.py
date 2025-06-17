@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -8,8 +8,6 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 import logging
-from django.contrib.auth import authenticate, login, get_user_model
-from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 

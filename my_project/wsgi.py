@@ -16,8 +16,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-print("STATIC_ROOT at runtime:", settings.STATIC_ROOT)
-
 application = WhiteNoise(application,root=str(settings.STATIC_ROOT), prefix=settings.STATIC_URL,autorefresh=False)
 if os.path.exists(settings.MEDIA_ROOT):
     application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
