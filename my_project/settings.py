@@ -1,9 +1,7 @@
 from pathlib import Path
 import os
-from pathlib import Path
 import dj_database_url
 
-# Use environment variables in your settings # Fetches the secret key from the .env file
 DEBUG = False # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
@@ -136,11 +134,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'georgerubinga@gmail.com'
 EMAIL_HOST_PASSWORD = 'gjqtieuqpirjlmro'
-
- #Vercel-specific settings
-if os.environ.get('VERCEL'):
-    # Security settings
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
