@@ -126,7 +126,7 @@ if os.environ.get('VERCEL'):
     STATIC_ROOT = '/var/task/staticfiles'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Login settings
 LOGIN_URL = '/'
