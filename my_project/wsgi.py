@@ -16,16 +16,21 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-# Always use WhiteNoise in production (Vercel)
-application = WhiteNoise(
-    application,
-    root=settings.STATIC_ROOT,
-    prefix=settings.STATIC_URL,
-    autorefresh=False
-)
-
-# Optionally serve media files in production (not recommended for large files)
+# Initialize WhiteNoise only in production
 if not settings.DEBUG:
-    application.add_files(settings.MEDIA_ROOT, prefix=settings.MEDIA_URL)
+    # Ensure STATIC_ROOT exists
+    if not os.path.exists(settings.STATIC_ROOT):
+        os.makedirs(settings.STATIC_ROOT, exist_ok=True)
+    
+    application = WhiteNoise(
+        application,
+        root=str(settings.STATIC_ROOT),  # Ensure path is a string
+        prefix=settings.STATIC_URL,
+        autorefresh=False
+    )
+    
+    # Optionally serve media files if MEDIA_ROOT exists
+    if os.path.exists(settings.MEDIA_ROOT):
+        application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
 
 app = application  # For Vercel

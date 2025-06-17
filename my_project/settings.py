@@ -115,14 +115,14 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Correct: absolute path
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')  # Correct: only your source static dir
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']  # or [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Login settings
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/home/'
