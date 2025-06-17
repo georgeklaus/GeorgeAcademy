@@ -121,13 +121,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')  # Correct: only your source static dir
 ]
 
-# Vercel-specific override
-if os.environ.get('VERCEL'):
-    STATIC_ROOT = '/var/task/staticfiles'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 # Login settings
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/home/'
