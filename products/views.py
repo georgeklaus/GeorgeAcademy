@@ -49,8 +49,8 @@ def cart_view(request):
 # Login and Registration page view - now handles root URL
 
 def login_registration(request):
-    if request.user.is_authenticated:
-        return redirect('home')
+    #if request.user.is_authenticated:
+        #return redirect('home')
     
     form_type = request.GET.get('form', 'login')
     next_url = request.GET.get('next', '/home/')
@@ -71,7 +71,7 @@ def handle_login(request, next_url):
     # Basic validation
     if not username or not password:
         messages.error(request, 'Both username and password are required')
-        return render(request, 'login_registration.html', {'form_type': 'login', 'next': next_url})
+        return render(request, 'login_registration.html', {'form_type': 'login', 'next': next_url, 'is_authenticated': request.user.is_authenticated})
     
     # Authenticate user
     user = authenticate(request, username=username, password=password)
@@ -130,6 +130,7 @@ def handle_register(request):
     
     try:
         user = User.objects.create_user(username=username, email=email, password=password1)
+        user.is_active = True
         user.save()
         
         # Auto-login after registration

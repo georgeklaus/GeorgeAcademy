@@ -12,16 +12,18 @@ from django.core.wsgi import get_wsgi_application
 from whitenoise import WhiteNoise
 from django.conf import settings
 
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
+
+# Serve static files with WhiteNoise - PRODUCTION ONLY
 if not settings.DEBUG:
     application = WhiteNoise(
         application,
-        root=settings.STATIC_ROOT,
+        root=settings.STATIC_ROOT,  # Use the path from settings
         prefix=settings.STATIC_URL
     )
-application = WhiteNoise(application, root=os.path.join(os.path.dirname(__file__), 'staticfiles'))
+    # If you need to serve media files through WhiteNoise (not recommended for production)
+    # application.add_files(settings.MEDIA_ROOT, prefix=settings.MEDIA_URL)
 
 app = application  # For Vercel
