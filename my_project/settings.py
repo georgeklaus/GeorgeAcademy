@@ -2,7 +2,6 @@ from pathlib import Path
 import os
 from pathlib import Path
 import dj_database_url
-import sys
 
 # Use environment variables in your settings # Fetches the secret key from the .env file
 DEBUG = False # Fetches DEBUG status as a boolean
@@ -60,10 +59,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Add these settings
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'login'
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -98,7 +94,7 @@ ROOT_URLCONF = 'my_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates',],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

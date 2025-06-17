@@ -16,15 +16,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-application = WhiteNoise(
-        application,
-        root=str(settings.STATIC_ROOT),  # Ensure path is a string
-        prefix=settings.STATIC_URL,
-        autorefresh=False
-    )
-    
-    # Optionally serve media files if MEDIA_ROOT exists
+application = WhiteNoise(application,root=str(settings.STATIC_ROOT), prefix=settings.STATIC_URL,autorefresh=False)
 if os.path.exists(settings.MEDIA_ROOT):
-        application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
+    application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
 
 app = application  # For Vercel
