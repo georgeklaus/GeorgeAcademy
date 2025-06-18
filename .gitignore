@@ -1,5 +1,23 @@
-.vercel
-.env
-__pycache__
-*.sqlite3
+# Exclude virtual environment
+venv/
+bin/
+lib/
+include/
+
+# Exclude Python packages and compiled files
 *.pyc
+__pycache__/
+*.so
+*.dist-info/
+*.libs/
+
+# Exclude build artifacts
+build/
+dist/
+*.egg-info/
+
+# Exclude secrets
+secrets/
+
+# Exclude Vercel-specific files
+.vercel/output/

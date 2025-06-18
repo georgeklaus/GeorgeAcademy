@@ -1,0 +1,22 @@
+# Exclude Python source and build files
+Python-3.12.0/
+Python-3.12.0.tgz
+
+# Exclude virtual environment
+venv/
+
+# Exclude collected static files (if using a CDN or external storage)
+staticfiles/
+
+# Exclude local static assets (if using Whitenoise or a CDN)
+static/
+
+# Exclude secrets (if not needed for deployment)
+secrets/
+
+# Exclude SQLite database
+*.sqlite3
+
+# Exclude compiled Python files
+__pycache__/
+*.pyc
