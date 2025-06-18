@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
+
 
 DEBUG = False
 
@@ -14,6 +16,7 @@ ALLOWED_HOSTS = [
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
+load_dotenv()
 
 # Database configuration
 if 'DATABASE_URL' in os.environ:
@@ -27,8 +30,15 @@ if 'DATABASE_URL' in os.environ:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('PGDATABASE', 'default_db_name'),  # Default for local dev
+            'USER': os.getenv('PGUSER', 'default_user'),         # Default for local dev
+            'PASSWORD': os.getenv('PGPASSWORD', 'default_pass'), # Default for local dev
+            'HOST': os.getenv('PGHOST', 'localhost'),           # Default for local dev
+            'PORT': os.getenv('PGPORT', '5432'),                # Default PostgreSQL port
+            'OPTIONS': {
+                'sslmode': 'require' if not DEBUG else 'disable',  # Use SSL in production
+            }
         }
     }
 

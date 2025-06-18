@@ -4,15 +4,13 @@
       "src": "my_project/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "50mb",
-        "runtime": "python3.12",
-        "postInstallCommand": "chmod +x build.sh && ./build.sh",
+        "runtime": "python3.11",
+        "installCommand": "python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt",
         "includeFiles": [
           "**/*.html",
           "staticfiles/**",
           "media/**",
-          "my_project/templates/**",
-          "my_project/**"
+          "my_project/templates/**"
         ]
       }
     }
