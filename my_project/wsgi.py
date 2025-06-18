@@ -20,4 +20,4 @@ application = WhiteNoise(application,root=str(settings.STATIC_ROOT), prefix=sett
 if os.path.exists(settings.MEDIA_ROOT):
     application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
 
-app = application  # For Vercel
+app = application 

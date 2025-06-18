@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
-DEBUG = False # Fetches DEBUG status as a boolean
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
@@ -11,7 +11,7 @@ ALLOWED_HOSTS = [
 ]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
 
