@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
-DEBUG =  # Fetches DEBUG status as a boolean
+DEBUG = False # Fetches DEBUG status as a boolean
 
 ALLOWED_HOSTS = [
     '.vercel.app',  # Allows all Vercel subdomains
