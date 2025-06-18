@@ -5,7 +5,7 @@
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.11",
-        "installCommand": "./Build.sh",
+        "installCommand": "./build.sh",
         "includeFiles": [
           "**/*.html",
           "staticfiles/**",
