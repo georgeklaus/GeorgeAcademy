@@ -21,7 +21,7 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.config(
             conn_max_age=600,
             ssl_require=True,
-            engine='django.db.backends.postgresql_psycopg'  # Use psycopg3 backend
+            engine='django.db.backends.postgresql_psycopg'
         )
     }
 else:
