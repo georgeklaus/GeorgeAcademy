@@ -1,0 +1,6 @@
+blog
+cart
+courses
+my_project
+products
+users
