@@ -1,4 +1,4 @@
-#!/home/klaus/georgeacademy/my_project/venv/bin/python
+#!/home/klaus/georgeacademy/my_project/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
