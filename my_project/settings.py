@@ -21,7 +21,7 @@ if 'DATABASE_URL' in os.environ:
         'default': dj_database_url.config(
             conn_max_age=600,
             ssl_require=True,
-            engine='django.db.backends.postgresql_psycopg'
+            engine='django.db.backends.postgresql'
         )
     }
 else:
@@ -93,7 +93,7 @@ ROOT_URLCONF = 'my_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'my_project' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'my_project'/ 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
