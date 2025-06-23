@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '.vercel.app',  # Allows all Vercel subdomains
+    '.vercel.app',
+    'george-academy.vercel.app',  # Allows all Vercel subdomains
     '127.0.0.1',  # For local development
     'localhost',  # For local development
 ]
