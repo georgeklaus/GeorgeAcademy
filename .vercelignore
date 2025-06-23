@@ -4,6 +4,8 @@ Python-3.12.0.tgz
 
 # Exclude virtual environment
 venv/
+# Exclude local development files
+.env
 
 # Exclude local static assets (if using Whitenoise or a CDN)
 static/
@@ -17,3 +19,14 @@ secrets/
 # Exclude compiled Python files
 __pycache__/
 *.pyc
+
+*.pyo
+*.pyd
+
+*.log
+*.pot
+*.mo
+*.db
+*.gz
+*.csv
+*.xlsx

@@ -11,6 +11,8 @@
           "staticfiles/**",
           "static/**",
           "media/**",
+          "manage.py",
+          "build.sh",
           "**/*.html",
           "**/*.css",
           "**/*.js",
