@@ -1,32 +1,29 @@
 #!/bin/bash
-set -e
+set -ex
 
-echo "----- Build Started -----"
+echo "🚀 NUCLEAR DEPLOYMENT INITIATED..."
 
-# Create necessary directories
-rm -rf staticfiles/ || true
+# 1. Clean everything
+rm -rf staticfiles node_modules
 mkdir -p staticfiles
-mkdir -p media
 
-echo "--- Installing dependencies ---"
-pip install --upgrade pip
-pip install whitenoise==6.9.0  # Explicit install for consistency
-pip install -r requirements.txt
+# 2. Install Python dependencies
+pip install --upgrade --no-cache-dir pip
+pip install --no-cache-dir -r requirements.txt
 
-echo "--- Collecting static files ---"
-python manage.py collectstatic --noinput --clear
+# 3. Install Node.js dependencies
+npm install serve-handler
 
-echo "➤ Verifying file structure..."
-find staticfiles/ -type f | head -20
+# 4. Collect static files
+python manage.py collectstatic --noinput --clear --verbosity 3
+
+# 5. Create verification
+echo "STATIC_FILES_VERIFIED" > staticfiles/.verified
+find staticfiles/ -type f > staticfiles/manifest.txt
+
+# 6. Final check
+echo "📁 DEPLOYMENT CONTENTS:"
+find staticfiles/ -type f | head -50
 du -sh staticfiles/
 
-ls -l staticfiles/
-
-echo "----- Build Completed -----"
-# Ensure the script exits with a success status
-exit 0
-echo "Build script executed successfully."
-echo "Exiting with status code $?"
-echo "----- Build Script Finished -----"
-echo "Build script executed successfully."
-echo "Exiting with status code $?"
+echo "✅ NUCLEAR DEPLOYMENT COMPLETE"
