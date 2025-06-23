@@ -1,46 +1,13 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "vercel-static-server.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "includeFiles": ["staticfiles/**"]
-      }
-    },
-    {
-      "src": "my_project/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "includeFiles": ["**/*.py", "templates/**", "requirements.txt"] 
-        
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/staticfiles/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "/media/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000"
-      }
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "my_project/wsgi.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "my_project/wsgi.py"
-    }
-  ]
+    "builds": [{
+        "src": "my_project/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "my_project/wsgi.py"
+        }
+    ]
 }

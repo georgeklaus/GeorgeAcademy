@@ -12,15 +12,7 @@ from django.core.wsgi import get_wsgi_application
 from whitenoise import WhiteNoise
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 
 application = get_wsgi_application()
 
-application = WhiteNoise(application,root=str(settings.STATIC_ROOT), prefix=settings.STATIC_URL,autorefresh=False)
-if os.path.exists(settings.MEDIA_ROOT):
-    application.add_files(str(settings.MEDIA_ROOT), prefix=settings.MEDIA_URL)
-
 app = application
-
-print(f"STATIC_ROOT: {settings.STATIC_ROOT}")
-print(f"MEDIA_ROOT: {settings.MEDIA_ROOT}")

@@ -24,8 +24,7 @@ urlpatterns = [
     path('contact/', views.contact_view, name='contact'),
     path('blog-single/', views.blog_single_view, name='blog_single'),
 
-    # Debug route
-    path('debug/', views.debug_info),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

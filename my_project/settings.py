@@ -1,10 +1,7 @@
-from pathlib import Path
 import os
-import dj_database_url
-from dotenv import load_dotenv
+from pathlib import Path
 
-
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.vercel.app',   # Allows all Vercel subdomains
@@ -16,40 +13,25 @@ ALLOWED_HOSTS = [
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-_j(qja1(vp=%bd^!xc7g4&dn(k84ci((4+*0g@+w38)ps2v2^_'
-load_dotenv()
+SECRET_KEY = 'hmif5s8r==s@sa3plo#-xp0p^kkanv&k-4ono*(8vb8skaqqb^'
 
-# Database configuration
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,
-            ssl_require=True,
-            engine='django.db.backends.postgresql'
-        )
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('PGDATABASE', 'default_db_name'),  # Default for local dev
-            'USER': os.getenv('PGUSER', 'default_user'),         # Default for local dev
-            'PASSWORD': os.getenv('PGPASSWORD', 'default_pass'), # Default for local dev
-            'HOST': os.getenv('PGHOST', 'localhost'),           # Default for local dev
-            'PORT': os.getenv('PGPORT', '5432'),                # Default PostgreSQL port
-            'OPTIONS': {
-                'sslmode': 'require' if not DEBUG else 'disable',  # Use SSL in production
-            }
-        }
-    }
 
-# Add this to your settings.py
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-]
+# database configuration
+
+# Use PostgreSQL database for production
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'neondb', 
+        'USER': 'neondb_owner', 
+        'PASSWORD': 'npg_mJDk1olKsLc3',  
+        'HOST': 'ep-little-pine-a4hzxycu-pooler.us-east-1.aws.neon.tech', 
+        'PORT': '5432', 
+        'OPTIONS': {
+            'sslmode': 'require'
+        },
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -99,12 +81,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 ROOT_URLCONF = 'my_project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,26 +104,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'      # Directory for collected static files
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-WHITENOISE_AUTOREFRESH = False
-
-WHITENOISE_ROOT = BASE_DIR / 'staticfiles' # Directory for static files served by Whitenoise
-WHITENOISE_USE_FINDERS = True # Use Django's static files finders
-WHITENOISE_MANIFEST_STRICT = False  # Disable strict manifest checking
-WHITENOISE_ALLOW_ALL_ORIGINS = True  # Allow all origins for static files
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Login settings
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/home/'
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
