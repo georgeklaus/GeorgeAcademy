@@ -11,6 +11,14 @@
           "staticfiles/**",
           "static/**",
           "media/**",
+          "**/*.html",
+          "**/*.css",
+          "**/*.js",
+          "**/*.png",
+          "**/*.jpg",
+          "**/*.woff",
+          "**/*.woff2",
+          "**/*.svg",
           "my_project/templates/**"
         ]
       }

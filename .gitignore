@@ -21,3 +21,4 @@ secrets/
 
 # Exclude Vercel-specific files
 .vercel/output/
+.vercel
