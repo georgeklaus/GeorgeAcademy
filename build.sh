@@ -1,15 +1,20 @@
 #!/bin/bash
-set -e  # Exit immediately if a command exits with a non-zero status
+set -e
 
-echo "Installing dependencies..."
-pip install --upgrade pip setuptools wheel
+echo "----- Build Started -----"
+
+# Create necessary directories
+mkdir -p staticfiles
+mkdir -p media
+
+echo "--- Installing dependencies ---"
+pip install --upgrade pip
 pip install -r requirements.txt
 
-echo "Python version:"
-python --version
-
-echo "Running collectstatic..."
+echo "--- Collecting static files ---"
 python manage.py collectstatic --noinput --clear
 
-echo "Contents of staticfiles directory:"
-ls -l staticfiles
+echo "--- Verifying static files ---"
+ls -l staticfiles/
+
+echo "----- Build Completed -----"

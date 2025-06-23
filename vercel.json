@@ -9,6 +9,7 @@
         "includeFiles": [
           "**/*.html",
           "staticfiles/**",
+          "static/**",
           "media/**",
           "my_project/templates/**"
         ]

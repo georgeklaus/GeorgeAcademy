@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '.vercel.app',
-    'george-academy.vercel.app',  # Allows all Vercel subdomains
+    '.vercel.app',   # Allows all Vercel subdomains
+    'george-academy.vercel.app',   # Specific Vercel domain
     '127.0.0.1',  # For local development
     'localhost',  # For local development
 ]
@@ -122,14 +122,19 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'          #'/var/task/staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'      # Directory for collected static files
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-WHITENOISE_AUTOREFRESH = False  # Allows missing files without warnings
+WHITENOISE_AUTOREFRESH = False
+
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles' # Directory for static files served by Whitenoise
+WHITENOISE_USE_FINDERS = True # Use Django's static files finders
+WHITENOISE_MANIFEST_STRICT = False  # Disable strict manifest checking
+WHITENOISE_ALLOW_ALL_ORIGINS = True  # Allow all origins for static files
 
 # Login settings
 LOGIN_URL = '/'
