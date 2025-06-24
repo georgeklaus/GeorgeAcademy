@@ -17,7 +17,6 @@ SECRET_KEY = 'hmif5s8r==s@sa3plo#-xp0p^kkanv&k-4ono*(8vb8skaqqb^'
 
 
 # database configuration
-
 # Use PostgreSQL database for production
 DATABASES = {
     'default': {
@@ -72,7 +71,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add Whitenoise middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
